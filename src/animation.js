@@ -24,16 +24,27 @@
     }
 
     Animation.prototype = {
+        running: false,
+        paused: false,
         run: function(useFailback){
+
+            if (this.running) return this;
+
             var f = useFailback || !animation ? failback : animation,
                 me = this;
             
             function loop(t) {
-                me.trigger(t);
+                me.paused || me.trigger(t);
                 f(loop)
             }
 
             loop(0);
+            this.running = true;
+
+            return this;
+        },
+        pause: function(bool){
+            this.paused = !!bool;
         }
     };
 

@@ -13,9 +13,24 @@ require(['http://localhost:8001/src/dispatcher.js', '../src/animation'], functio
     an.addHandler(h);
 
     setTimeout(function(){
+        console.log('remove handler');
         an.removeHandler(h);
-    }, 10*1000)
+    }, 3*1000)
 
+    setTimeout(function(){
+        console.log('add handler');
+        an.addHandler(h);    
+    }, 5*1000);
+
+    setTimeout(function(){
+        console.log('paused = true');
+        an.pause(true);    
+    }, 7*1000);
+
+    setTimeout(function(){
+        console.log('paused = false');
+        an.pause(false);    
+    }, 9*1000)
 
 });
 
