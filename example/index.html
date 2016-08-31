@@ -1,0 +1,22 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js"></script>
+
+<script>
+
+requirejs.config({});
+
+require(['http://localhost:8001/src/dispatcher.js', '../src/animation'], function(dispatcher, animation){
+
+    var an = new animation(dispatcher);
+    an.run();
+
+    var h = function(t){console.log(t)};
+    an.addHandler(h);
+
+    setTimeout(function(){
+        an.removeHandler(h);
+    }, 10*1000)
+
+
+});
+
+</script>
